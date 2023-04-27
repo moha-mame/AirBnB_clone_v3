@@ -56,4 +56,4 @@ The *syntax* is: help \<command\>
 
 
 ## Contributors :two_women_holding_hands:
-[@Mohammed - Github](https://github.com/moha-mame) - [@Henok Belachew - Github](https://github.com/Henok-Belachew)
+[@Mohammed - Github](https://github.com/moha-mame) - [@Mahlet Seifu - Github](https://github.com/Mahlet2123)
