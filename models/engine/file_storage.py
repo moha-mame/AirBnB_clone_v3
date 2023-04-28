@@ -26,6 +26,21 @@ class FileStorage:
     # dictionary - empty but will store all objects by <class name>.id
     __objects = {}
 
+
+    def get(self, cls=None, id=""):
+        """returns object of type cls with string id or None if nonexistent"""
+        if cls is not None and id != "":
+            all_cls = self.all(cls)
+            for key, value in all_cls.items():
+                if key.split(".")[-1] == id:
+                    return value
+        return None
+
+    def count(self, cls=None):
+        """return num of objs matching class name or all if no class name"""
+        all_cls = self.all(cls)
+        return len(all_cls.items())
+
     def all(self, cls=None):
         """returns the dictionary __objects"""
         if cls is not None:
@@ -72,33 +87,3 @@ class FileStorage:
     def close(self):
         """call reload() method for deserializing the JSON file to objects"""
         self.reload()
-
-    def get(self, cls, id):
-        """
-        Returns the object based on the class name and its ID, or
-        None if not found
-        """
-        if cls not in classes.values():
-            return None
-
-        all_cls = models.storage.all(cls)
-        for value in all_cls.values():
-            if (value.id == id):
-                return value
-
-        return None
-
-    def count(self, cls=None):
-        """
-        count the number of objects in storage
-        """
-        all_class = classes.values()
-
-        if not cls:
-            count = 0
-            for clas in all_class:
-                count += len(models.storage.all(clas).values())
-        else:
-            count = len(models.storage.all(cls).values())
-
-        return count
