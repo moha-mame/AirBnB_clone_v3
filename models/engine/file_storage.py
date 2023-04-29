@@ -26,7 +26,6 @@ class FileStorage:
     # dictionary - empty but will store all objects by <class name>.id
     __objects = {}
 
-
     def get(self, cls=None, id=""):
         """returns object of type cls with string id or None if nonexistent"""
         if cls is not None and id != "":
@@ -74,7 +73,7 @@ class FileStorage:
                 jo = json.load(f)
             for key in jo:
                 self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
-        except:
+        except Exception as e:
             pass
 
     def delete(self, obj=None):
