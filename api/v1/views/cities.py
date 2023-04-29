@@ -14,8 +14,12 @@ def cities_by_state(state_id):
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
-    cities = [city.to_dict() for city in state.cities]
-    return jsonify(cities)
+    cities_list = []
+    cities = storage.all("City")
+    for city in cities.values():
+        if state_id == getattr(city, 'state_id'):
+            cities_list.append(city.to_dict())
+    return jsonify(cities_list), 200
 
 
 @app_views.route('/cities/<city_id>', methods=['GET'],
