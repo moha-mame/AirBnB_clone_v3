@@ -4,7 +4,7 @@ Defines the views for the User object RESTful API actions
 """
 
 from api.v1.views import app_views
-from flask import jsonify, make_response, request
+from flask import jsonify, make_response, abort, request
 from models import storage
 from models.user import User
 
