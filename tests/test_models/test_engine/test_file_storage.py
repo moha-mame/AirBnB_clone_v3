@@ -16,7 +16,6 @@ from models.review import Review
 class test_fileStorage(unittest.TestCase):
     """ Class to test the file storage method """
 
-
     def setUp(self):
         """ Set up test environment """
         del_list = []
@@ -30,7 +29,6 @@ class test_fileStorage(unittest.TestCase):
         """ Remove storage file at end of tests """
         try:
             os.remove('file.json')
-        except:
             pass
 
     def test_obj_list_empty(self):

@@ -54,5 +54,6 @@ class TestDB(unittest.TestCase):
         self.assertTrue(hasattr(DBStorage, 'delete'))
         self.assertTrue(hasattr(DBStorage, 'reload'))
 
+
 if __name__ == "__main__":
     unittest.main()
