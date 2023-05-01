@@ -12,11 +12,11 @@ from models.user import User
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def get_users():
     """Retrieves the list of all User objects"""
-    users = storage.all(User).values()
-        users = []
-    for user in users:
-        users.append(user.to_dict())
-    return jsonify(users)
+    users_list = []
+    users = storage.all("User")
+    for user in users.values():
+        users_list.append(user.to_dict())
+    return jsonify(users_list)
 
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
@@ -68,4 +68,4 @@ def update_user(user_id):
         if key not in ignore:
             setattr(user, key, value)
     storage.save()
-    return make_response(jsonify(user.to_dict()) 200)
+    return make_response(jsonify(user.to_dict()), 200)
