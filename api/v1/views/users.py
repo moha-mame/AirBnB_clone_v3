@@ -4,7 +4,7 @@ Defines the views for the User object RESTful API actions
 """
 
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, make_response, request
 from models import storage
 from models.user import User
 
@@ -34,7 +34,7 @@ def delete_user(user_id):
         abort(404)
     storage.delete(user)
     storage.save()
-    return jsonify({})
+    return make_response(jsonify({}))
 
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
@@ -49,7 +49,7 @@ def create_user():
     user = User(**request.get_json())
     storage.new(user)
     storage.save()
-    return jsonify(user.to_dict()), 201
+    return make_response(jsonify(user.to_dict()), 201)
 
 
 @app_views.route("/users/<user_id>", methods=['PUT'], strict_slashes=False)
@@ -65,4 +65,4 @@ def update_user(user_id):
         if key not in ignore:
             setattr(user, key, value)
     storage.save()
-    return jsonify(user.to_dict()) 200
+    return make_response(jsonify(user.to_dict()) 200)
